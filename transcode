@@ -1,0 +1,57 @@
+#define ROW 3
+#define COL 4
+void Transpose(int(*a)[COL], int(*at)[ROW], int row, int col);
+void InputMatrix(int(*s)[COL], int row, int col);
+void PrintMatrix(int(*s)[ROW], int row, int col);
+int main(void)
+{
+	int s[ROW][COL];//s代表原矩阵
+	int st[COL][ROW];//st代表转置后的矩阵
+	printf("Please enter matrix:\n");
+	InputMatrix(s, ROW, COL);//输入原矩阵,s指向矩阵s的第0行,是行指针
+	Transpose(s, st, ROW, COL);//对矩阵s进行转置,结果存放于st中  
+	printf("The transposed matrix is:\n");
+	PrintMatrix(st, COL, ROW); //输出转置矩阵,*st指向st的第0行,是行指针
+	return 0;
+}
+//函数功能： 对任意row行col列的矩阵a转置，转置后的矩阵为at
+void Transpose(int(*a)[COL], int(*at)[ROW], int row, int col)
+{
+	int i, j;
+	for (i = 0; i<row; i++)
+                       {
+                       for (j=0; j<col; j++)
+		{
+		*(*(at + j) + i) = (*(a + i) + j);
+		}
+	}
+}
+
+void InputMatrix( int(*s)[ROW], int row, int col)   //输入矩阵元素
+{
+	int i, j;
+	for (i = 0; i<row; i++)
+	{
+		for (j = 0; j<col; j++)
+		{
+			scanf("%d", *(s + i) + j);// 元素s[i][j]
+		}
+	}
+}
+
+void PrintMatrix(int  *s[COL], int row, int col)   //输出矩阵元素
+{
+	int i, j;
+	for (i = 0; i<row; i++)
+	{
+		for (j = 0; j<col; j++)
+		{
+			printf("%d\t", *(*(s + i) + j)); // 元素s[i][j]
+		}
+		printf(" \n");
+	}
+}
+
+
+
+	//TRANSFORM
